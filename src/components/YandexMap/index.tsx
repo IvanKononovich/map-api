@@ -2,28 +2,60 @@ import React, { Component } from 'react';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
 
+interface YandexMapPropsType {
+    mapCoordinates: [{ coords: string, name: string }]; 
+    centerMap?: number[]
+    startZoom?: number; 
+}
+
+interface YandexMapStateType {
+    mapCoordinates: [{ coords: string, name: string }]; 
+    centerMap: number[]
+    startZoom?: number; 
+}
+
 const YandexMap: any = class extends Component{
-    constructor(props: { mapCoordinates: [{ coodrs: string, name: string }] }) {
+    constructor(props: YandexMapPropsType ) {
         super(props);
+
         this.state = {
             mapCoordinates: props.mapCoordinates,
-            center: props.mapCoordinates[0].coodrs.split(','),
+            centerMap: props.centerMap || [],
+            startZoom: props.startZoom || 13,
         };
+
+    }
+
+    static getDerivedStateFromProps(props: YandexMapPropsType, state: YandexMapStateType) {
+        if (props.centerMap !== state.centerMap) {
+            let centerMap: number[];
+
+            if (props.centerMap) {
+                centerMap = props.centerMap;
+            } else {
+                centerMap = props.mapCoordinates[0].coords.split(',').map((item) => +item);
+            }
+
+            state.centerMap = centerMap;
+
+            return state;
+        };
+
+        return null;
     }
  
     render() {
-        const { center, mapCoordinates, }: any = this.state;
-
+        const { mapCoordinates, startZoom, centerMap, }: any = this.state;
 
         return (
             <YMaps>
                 <Map 
                     className="yandex-map"
-                    defaultState={{ center, zoom: 9 }}
+                    state={{ center: centerMap, zoom: startZoom }}
                 >
                 {
-                    mapCoordinates.map((item: { coodrs: string; name: string; }, index: number) => {
-                        const coords = item.coodrs.split(',').map((item) => +item);
+                    mapCoordinates.map((item: { coords: string; name: string; }, index: number) => {
+                        const coords = item.coords.split(',').map((item) => +item);
                         const { name } = item;
 
                         return (
