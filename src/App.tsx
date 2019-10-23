@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import Header from './components/Header/container';
+import Map from './components/YandexMap/container';
 
 
-const App:React.FC = () => <Header />;
+class App extends Component {
+    render() {
+        return (
+            <Map />
+        );
+    }
+}
 
 
 export default App;

@@ -1,0 +1,7 @@
+body {
+    margin: 0;
+}
+.yandex-map {
+    width: 70vw;
+    height: 100vh;
+}

@@ -3,7 +3,7 @@ import {
 } from './../actions';
 
 
-export default (store: any, action: any,): object => {
+export default (store: any, action: { type: string; payload?: any },): object => {
     switch(action.type) {
         case ACTION:
             return {
