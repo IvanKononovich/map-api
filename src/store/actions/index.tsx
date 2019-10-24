@@ -1,15 +1,15 @@
-const ACTION:string = 'ACTION';
+const UPDATE_MAP_CARDS:string = 'UPDATE_MAP_CARDS';
  
 
-function action(data: any) {
+function updateMapCards(data: any) {
     return {
-        type: ACTION,
+        type: UPDATE_MAP_CARDS,
         payload: data,
     };
 };
 
 
 export {
-    action,
-    ACTION,
+    updateMapCards,
+    UPDATE_MAP_CARDS,
 };
