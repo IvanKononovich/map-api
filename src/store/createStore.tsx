@@ -24,7 +24,7 @@ function checkChangeJSON(): void {
     // Если они не равны, то пришедшие с 
     // сервера данные записываються в store
     
-    const req = fetch('http:/localhost:9999/endpoint');
+    const req = fetch('http://localhost:9999/endpoint');
     req
     .then((res: any) => res.json())
     .then((res: any) => {
