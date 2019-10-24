@@ -3,13 +3,13 @@ import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
 
 interface YandexMapPropsType {
-    mapCoordinates: [{ coords: string, name: string }]; 
+    mapEndpoint: [{ coords: string, name: string }]; 
     centerMap?: number[]
     startZoom?: number; 
 }
 
 interface YandexMapStateType {
-    mapCoordinates: [{ coords: string, name: string }]; 
+    mapEndpoint: [{ coords: string, name: string }]; 
     centerMap: number[]
     startZoom?: number; 
 }
@@ -19,7 +19,7 @@ const YandexMap: any = class extends Component{
         super(props);
 
         this.state = {
-            mapCoordinates: props.mapCoordinates,
+            mapEndpoint: props.mapEndpoint,
             centerMap: props.centerMap || [],
             startZoom: props.startZoom || 13,
         };
@@ -33,7 +33,7 @@ const YandexMap: any = class extends Component{
             if (props.centerMap) {
                 centerMap = props.centerMap;
             } else {
-                centerMap = props.mapCoordinates[0].coords.split(',').map((item) => +item);
+                centerMap = props.mapEndpoint[0].coords.split(',').map((item) => +item);
             }
 
             state.centerMap = centerMap;
@@ -45,7 +45,7 @@ const YandexMap: any = class extends Component{
     }
  
     render() {
-        const { mapCoordinates, startZoom, centerMap, }: any = this.state;
+        const { mapEndpoint, startZoom, centerMap, }: any = this.state;
 
         return (
             <YMaps>
@@ -54,7 +54,7 @@ const YandexMap: any = class extends Component{
                     state={{ center: centerMap, zoom: startZoom }}
                 >
                 {
-                    mapCoordinates.map((item: { coords: string; name: string; }, index: number) => {
+                    mapEndpoint.map((item: { coords: string; name: string; }, index: number) => {
                         const coords = item.coords.split(',').map((item) => +item);
                         const { name } = item;
 

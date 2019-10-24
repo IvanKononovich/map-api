@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import YandexMap from './index';
 
 
-function mapStateToProps(state: { mapCoordinates: string[]; }) {
+function mapStateToProps(state: { mapEndpoint: string[]; }) {
     return {
-        mapCoordinates: state.mapCoordinates,
+        mapEndpoint: state.mapEndpoint,
     };
 };
 

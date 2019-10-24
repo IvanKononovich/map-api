@@ -12,7 +12,7 @@ class App extends Component {
     };
 
     render() {
-        const { mapCards }: any = this.props;
+        const { mapEndpoint }: any = this.props;
         const { centerMap }: any = this.state;
 
         const mapConfig: { startZoom?: number; centerMap?: number[]; } = {};
@@ -30,7 +30,7 @@ class App extends Component {
                 </Grid>
                 <Grid item xs={ 4 }>
                     {
-                        mapCards.map((item: { coords: string; name: string; }, index: number) => {
+                        mapEndpoint.map((item: { coords: string; name: string; }, index: number) => {
                             const { coords, name } = item;
                             return (
                                 <Button 
@@ -57,9 +57,9 @@ class App extends Component {
 }
 
 
-function mapStateToProps(state: { mapCards: string[]; }) {
+function mapStateToProps(state: { mapEndpoint: string[]; }) {
     return {
-        mapCards: state.mapCards,
+        mapEndpoint: state.mapEndpoint,
     };
 };
 
